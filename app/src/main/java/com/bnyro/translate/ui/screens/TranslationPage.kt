@@ -54,7 +54,12 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.material3.CardElevation
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.material3.ElevatedCard
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.foundation.Image
+import androidx.compose.ui.res.painterResource
+import androidx.compose.foundation.isSystemInDarkTheme
 
 @SuppressLint("UnrememberedMutableState")
 @Composable
@@ -62,6 +67,13 @@ fun TranslationPage(
     navHostController: NavController,
     viewModel: TranslationModel
 ) {
+    val isDarkMode = isSystemInDarkTheme() // Detect dark or light mode
+
+    val backgroundImage = if (isDarkMode) {
+        R.drawable.bg2 // Replace with your dark mode image
+    } else {
+        R.drawable.bglight // Replace with your light mode image
+    }
     val context = LocalContext.current
 
     LaunchedEffect(Unit) {
@@ -69,18 +81,25 @@ fun TranslationPage(
     }
 
     // Gradient colors for the background
-    val gradientBrush = Brush.horizontalGradient(
-        colors = listOf(
-            Color(0xFF836FF2), // Purple
-            Color(0xFFD367D4)  // Red Purple
-        )
-    )
+//    val gradientBrush = Brush.horizontalGradient(
+//        colors = listOf(
+//            Color(0xFF836FF2), // Purple
+//            Color(0xFFD367D4)  // Red Purple
+//        )
+//    )
 
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(gradientBrush) // Apply the gradient background
+//            .background(gradientBrush) // Apply the gradient background
     ) {
+        // Background image
+        Image(
+            painter = painterResource(id = backgroundImage), // Replace with your image resource
+            contentDescription = null,
+            modifier = Modifier.fillMaxSize(),
+            contentScale = ContentScale.Crop // Adjust scaling to fill the screen
+        )
         Scaffold(
             modifier = Modifier.fillMaxSize(),
             containerColor = Color.Transparent,
