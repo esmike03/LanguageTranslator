@@ -72,7 +72,7 @@ fun TranslationPage(
     val backgroundImage = if (isDarkMode) {
         R.drawable.bg2 // Replace with your dark mode image
     } else {
-        R.drawable.bglight // Replace with your light mode image
+        R.drawable.bglight2 // Replace with your light mode image
     }
     val context = LocalContext.current
 
